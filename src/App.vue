@@ -17,11 +17,8 @@ export default {
 }
 
 </script>
-<style scoped>
+<style>
 
-#background {
-  background-image: url("https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_28/1587661/dogs-age-years-kb-inline-200707.jpg");
-}
 
 #app {
   font-family: Roboto, Helvetica, Arial, sans-serif;

@@ -4,6 +4,8 @@ import Home from '@/views/Home.vue'
 import Blogs from '@/views/Blogs.vue'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+import Profile from '@/views/Profile'
+import Contact from '@/views/Contact'
 
 const routes = [
   {
@@ -25,6 +27,16 @@ const routes = [
     path: '/Register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile
+  },
+  {
+    path: '/Contact',
+    name: 'Contact',
+    component: Contact
   },
 ]
 

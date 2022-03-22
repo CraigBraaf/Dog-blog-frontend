@@ -52,7 +52,7 @@
                         <div class="col-md-6">
                             <div class="AppFormRight position-relative d-flex justify-content-center flex-column align-items-center text-center p-5 text-white">
                                 <h2 class="position-relative px-4 pb-3 mb-4">PAWS</h2>
-                                <p>Find the best health recommendations for your dog!</p>
+                                <p>Find the best informative blogs for your dogs wellbeing!</p>
                             </div>
                         </div>
                     </div>
@@ -65,9 +65,57 @@
 </template>
 
 <script>
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default {
+  name: "Login",
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
+  data() {
+    const schema = yup.object().shape({
+      username: yup.string().required("Username is required!"),
+      password: yup.string().required("Password is required!"),
+    });
+    return {
+      loading: false,
+      message: "",
+      schema,
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  created() {
+    if (this.loggedIn) {
+      this.$router.push("/Profile");
+    }
+  },
+  methods: {
+    handleLogin(user) {
+      this.loading = true;
+      this.$store.dispatch("users/login", user).then(
+        () => {
+          this.$router.push("/Profile");
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+  },
+};
 
-}
 </script>
 
 <style scoped>
