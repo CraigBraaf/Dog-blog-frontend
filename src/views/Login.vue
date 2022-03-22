@@ -2,7 +2,7 @@
 
   <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
-            <form class="col-md-9">
+            <form @submit.prevent="login" class="col-md-9">
                 <div class="AppForm shadow-lg">
                     <div class="row">
                         <div class="col-md-6 d-flex justify-content-center align-items-center">
@@ -10,12 +10,13 @@
 
                                 <h1>Login</h1>
                                 <div class="form-group position-relative mb-4">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="username"
+                                    <input type="username" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="username"
                                         placeholder="Username">
                                         <i class="fa fa-user-o"></i>
                                 </div>
+                               
                                 <div class="form-group position-relative mb-4">
-                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="password"
+                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="password"
                                         placeholder="Password">
                                         <i class="fa fa-key"></i>
 
@@ -65,57 +66,38 @@
 </template>
 
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
-import * as yup from "yup";
 export default {
-  name: "Login",
-  components: {
-    Form,
-    Field,
-    ErrorMessage,
-  },
-  data() {
-    const schema = yup.object().shape({
-      username: yup.string().required("Username is required!"),
-      password: yup.string().required("Password is required!"),
-    });
-    return {
-      loading: false,
-      message: "",
-      schema,
-    };
-  },
-  computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    },
-  },
-  created() {
-    if (this.loggedIn) {
-      this.$router.push("/Profile");
-    }
-  },
-  methods: {
-    handleLogin(user) {
-      this.loading = true;
-      this.$store.dispatch("users/login", user).then(
-        () => {
-          this.$router.push("/Profile");
-        },
-        (error) => {
-          this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-        }
-      );
-    },
-  },
+   data() {
+     return {
+       username: "",
+       password: "",
+     };
+   },
+   methods:{
+     login() {
+       fetch("https://d0g-blog.herokuapp.com/users/register", {
+    method:"POST",
+    body: JSON.stringify ({
+     username: this.username,
+     password: this.password,
+   }),
+   headers: {
+     "Content-type": "application/json; charset=UTF-8",
+   },
+       })
+       .then((response) => response.json())
+       .then((json) => {
+         localStorage.setItem("jwt", json.jwt);
+         alert("User logged in");
+         this.$router.push({name: "Profile"});
+       })
+       .catch((err) => {
+         alert(err);
+       });
+     },
+   },
 };
-
+   
 </script>
 
 <style scoped>

@@ -1,23 +1,28 @@
 <template>
    <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
-            <form class="col-md-9">
-                <div class="AppForm shadow-lg">
+            <form @submit.prevent="register" class="col-md-9">
+                     <div class="AppForm shadow-lg">
                     <div class="row">
                         <div class="col-md-10 d-flex justify-content-center align-items-center">
                             <div class="AppFormLeft">
 
                                 <h1>REGISTER:</h1>
+                                <br>
                                 <div class="form-group position-relative mb-6">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="username"
+                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="username"
                                         placeholder="Username">
                                         <i class="fa fa-user-o"></i>
                                 </div>
+                                <div class="form-group position-relative mb-4">
+                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="email"
+                                        placeholder="Email">
+                                        <i class="fa fa-key"></i>
+                                        </div>
                                 <div class="form-group position-relative mb-6">
-                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="password"
+                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="password"
                                         placeholder="Password">
                                         <i class="fa fa-key"></i>
-
                                 </div>
                                 <div class="row  mt-4 mb-4">
                                     <div class="col-md-6">
@@ -28,13 +33,11 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 text-right">
-                                        <a href="#">Forgot Password?</a>
-                                    </div>
+                                   
                                 </div>
 
                                 <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
-                                    Login
+                                    Register
                                 </button>
 
                                 <p class="text-center mt-5">
@@ -50,6 +53,8 @@
                         </div>
                     </div>
                 </div>
+         
+               
 
             </form>
         </div>
@@ -58,8 +63,39 @@
 
 <script>
 export default {
-
-}
+   data() {
+       return {
+           username:"",
+           email: "",
+           password:"",
+       };
+   },
+methods: {
+    register() {
+        fetch("https://d0g-blog.herokuapp.com/users/register", {
+            method: "POST",
+            body: JSON.stringify({
+                name: this.name,
+                email: this.email,
+                password: this.password,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            this.msg = `${this.name} registered Successfully`;
+            alert("redirecting to login...");
+            localStorage.setItem("jwt", json.jwt);
+            this.$router.push({name: "Login"});
+        })
+        .catch((err) => {
+            alert(err);
+        });
+    },
+},
+};
 </script>
 
 <style scoped>
