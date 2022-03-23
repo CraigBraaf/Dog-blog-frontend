@@ -17,7 +17,6 @@
                                 <div class="form-group position-relative mb-4">
                                     <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="email"
                                         placeholder="Email">
-                                        <i class="fa fa-key"></i>
                                         </div>
                                 <div class="form-group position-relative mb-6">
                                     <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="password"
@@ -25,28 +24,11 @@
                                         <i class="fa fa-key"></i>
                                 </div>
                                 <div class="row  mt-4 mb-4">
+                                    
                                     <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                                Remember me
-                                            </label>
-                                        </div>
                                     </div>
-                                   
                                 </div>
-
-                                <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
-                                    Register
-                                </button>
-
-                                <p class="text-center mt-5">
-                                    Don't have an account?
-                                    <router-link to="/Register">
-                                        Create your account
-                                    </router-link>
-
-                                </p>
+                               
 
                             </div>
 
@@ -168,5 +150,6 @@ body{
 
 .container {
     margin-top: 200px;
+    padding-right: -50px;
 }
 </style>

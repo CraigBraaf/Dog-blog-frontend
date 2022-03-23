@@ -28,37 +28,36 @@ export default {
     name: "",
     email: "",
     message: ""
-    } 
+    };
   },
 
   methods: {
-    handleSubmit() {
-      console.log(`Form Submitted`)
+    handleSubmit() {console.log(`Form Submitted`)
       console.log(this.name)
       console.log(this.email)
       console.log(this.message)
       fetch('https://d0g-blog.herokuapp.com/contact', {
-        methods: "POST",
+        method:"POST",
         body: JSON.stringify({
           name: this.name,
           email: this.email,
           message: this.message,
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
         },
       })
       .then((response) => response.json())
       .then((json) => {
-        alert(json.msg)
+        alert("Email Sent!"),
         this.name = "",
         this.email = "",
         this.message = ""
       })
       .catch((e) => alert(e.msg))
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -90,7 +89,8 @@ button::selection {
   user-select: none;
 }
 .wrapper {
-  margin-left: 600px;
+  margin-top: 90px;
+  margin-left: 650px;
   width: 90%;
   padding: 2rem;
   background: #fff;
@@ -99,7 +99,7 @@ button::selection {
     0 0px 33.4px rgba(0, 0, 0, 0.072), 0 0px 80px rgba(0, 0, 0, 0.1);
 }
 h2 {
-  background: rgba(173, 216, 230, 0.7);
+  background: linear-gradient(45deg,#CF6964, #8D334C);
   letter-spacing: 0.1rem;
   padding: 1rem;
   cursor: default;
@@ -136,7 +136,7 @@ button {
   margin-top: 1rem;
   padding: 1rem 1.5rem;
   border: none;
-  background: rgba(173, 216, 230, 0.7);
+  background: linear-gradient(45deg,#8D334C,#CF6964);
   cursor: pointer;
   transition: background 0.15s;
 }

@@ -1,10 +1,10 @@
 <template>
 
 <section>
-    <div class="hover-slide">
-            <router-link :to="{name: 'Register'}" class="btn btn-default start-me">Create Blog</router-link>
-    </div>
-
+    
+<!-- <div class="hover-slide">
+            <router-link :to="{name: 'Register'}" class="btn btn-default createblog">Create Blog</router-link>
+    </div> -->
     <div class="carousel-inner">
         <!--specify first slide-->
         <div class="item active">
@@ -21,19 +21,21 @@
 
 <style scoped>
 
+.item 
 
-
-.carousel .item {
+.item {
     width: 100%;
     height: 100%;
  }
 
-.carousel .item img {
+.item img {
     width: 100%;
     height: 100%;
 }
 
-.btn.start-me {margin: 0 auto;}
+.btn .createblog {
+    margin: 0 auto;
+    }
 
 
 </style>
