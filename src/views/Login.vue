@@ -75,7 +75,8 @@ export default {
    },
    methods:{
      login() {
-       fetch("https://d0g-blog.herokuapp.com/users/register", {
+         console.log(this.username, this.password)
+       fetch("https://d0g-blog.herokuapp.com/users/login", {
     method:"POST",
     body: JSON.stringify ({
      username: this.username,
@@ -87,6 +88,8 @@ export default {
        })
        .then((response) => response.json())
        .then((json) => {
+           console.log(json)
+           if(!json.jwt) return alert("User not registered")
          localStorage.setItem("jwt", json.jwt);
          alert("User logged in");
          this.$router.push({name: "Profile"});

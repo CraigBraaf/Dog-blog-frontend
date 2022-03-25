@@ -10,8 +10,8 @@
                                 <h1>REGISTER:</h1>
                                 <br>
                                 <div class="form-group position-relative mb-6">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="username"
-                                        placeholder="Username">
+                                    <input type="username" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="username"
+                                        placeholder="username">
                                         <i class="fa fa-user-o"></i>
                                 </div>
                                 <div class="form-group position-relative mb-4">
@@ -23,6 +23,9 @@
                                         placeholder="Password">
                                         <i class="fa fa-key"></i>
                                 </div>
+                                <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
+                                    Register
+                                </button>
                                 <div class="row  mt-4 mb-4">
                                     
                                     <div class="col-md-6">
