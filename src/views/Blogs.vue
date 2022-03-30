@@ -1,4 +1,4 @@
-<template>
+<template><br><br><br><br>
   <h2>Give us a bark if you have anything to add:</h2>
 <!-- Button trigger moda-->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -20,18 +20,18 @@
       <form method="post" role="form">
         <div class="form-group">
           <label> Title: </label>
-          <input type="text" class="form-control" name="title" placeholder="Title"/>
+          <input type="text" v-model="newPost.title" class="form-control" name="title" placeholder="Title"/>
         </div>
         <div class="form-group">
           <label> Image: </label>
 <div class="form-group">
-          <input type="url" class="form-control" name="title" placeholder="URL"/>
+          <input type="url" v-model="newPost.photo" class="form-control" name="title" placeholder="URL"/>
         </div>
         </div>
         <div class="form-group">
           <label> Description: </label>
 <div class="form-group">
-          <input type="text" size="50" class="form-control" name="title" placeholder="Description"/>
+          <input type="text"  v-model="newPost.desc" size="50" class="form-control" name="title" placeholder="Description"/>
         </div>
         </div>
       </form>
@@ -40,7 +40,7 @@
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">WOOF!</button>
+        <button type="button" @click.prevent="createPost" class="btn btn-secondary" data-bs-dismiss="modal">WOOF!</button>
       </div>
     </div>
   </div>
@@ -82,14 +82,41 @@ export default {
    data(){
       return {
        posts: [],
+       newPost: {
+         title: "",
+         desc: "",
+         photo: "",
+       },
+       url: "https://d0g-blog.herokuapp.com/posts"
       };
 },
 mounted() {
-    fetch ("https://d0g-blog.herokuapp.com/posts")
+    fetch (this.url)
     .then((res) => res.json())
     .then((data) => (this.posts = data))
     .catch((err) => console.log(err.message));
   },
+  methods: {
+    async createPost(){
+      try {
+        fetch(this.url, {
+          method: "POST",
+          body: JSON.stringify({
+            title: this.newPost.title,
+            description: this.newPost.desc,
+            photo: this.newPost.photo
+          }),
+          // headers:{
+          //   "Content-Type": "application/json",
+          //   Authorization: `Bearer ${JSON.parse(localStorage.getItem('user'))}`
+          // }
+        }).then((response) => response.json()).then(() => alert("You have created a new post!"))
+        
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
 };
 
 </script>
@@ -97,7 +124,7 @@ mounted() {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
 
-* {
+* {     
   margin: 0;
   padding: 0;
   box-sizing: border-box;
