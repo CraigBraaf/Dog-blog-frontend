@@ -174,6 +174,7 @@ body{
 
 .container {
     margin-top: 40px;
+    padding-left: 50px;
 }
 
 #loginpage{
