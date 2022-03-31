@@ -76,7 +76,7 @@ export default {
    methods:{
      login() {
          console.log(this.username, this.password)
-       fetch("https://dog-apii.herokuapp.com/users/login", {
+       fetch("https://d0g-blog.herokuapp.com/users/login", {
     method:"POST",
     body: JSON.stringify ({
      username: this.username,

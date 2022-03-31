@@ -87,7 +87,7 @@ export default {
          desc: "",
          photo: "",
        },
-       url: "https://d0g-blog.herokuapp.com/posts"
+       url: "https://dog-apii.herokuapp.com/posts"
       };
 },
 mounted() {

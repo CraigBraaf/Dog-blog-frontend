@@ -1,11 +1,13 @@
 <template>
 
 <section id="home">
+  <div class="heading">
       <h1>EVERYTHING, ALL THINGS DOG!</h1>
-    <h2>Share your dog knowledge1</h2>  
+    <h2>Share your dog knowledge!</h2>  
+    </div>
 <div class="wrapper">
 
-  <a href="/Login">CREATE POST</a>
+  <a href="/register">CREATE POST</a>
 </div>
     </section>
 </template>
@@ -45,8 +47,8 @@ a{
   text-decoration: none;
   text-align: center;
   border-radius: 50px;
-  border: 3px solid rgb(105, 26, 26);
-  color: rgb(105, 26, 26);
+  border: 3px solid rgb(0, 0, 0);
+  color: rgb(5, 5, 5);
   font-size: 20px;
   font-family: arial;
   position: relative;
@@ -64,7 +66,7 @@ a:after{
   height: 100%;
   top: -100%;
   left: 0;
-  background: rgb(105, 26, 26);
+  background: rgb(255, 51, 0);
   z-index: -1;
   transition: all .35s;
 }
@@ -86,8 +88,10 @@ a:hover:after{
   top: 0;
 }
 
-h1 h2 {
+.heading {
     text-align: center;
+    padding-top: 250px;
+    
 }
 
 </style>

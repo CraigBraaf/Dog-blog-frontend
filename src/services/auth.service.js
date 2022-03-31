@@ -1,9 +1,9 @@
 import axios from 'axios';
-const API_URL = "https://dog-apii.herokuapp.com/users/";
+const API_URL = "https://dog-apii.herokuapp.com/users";
 class AuthService {
     async login(user) {
-        return axios.post(`${API_URL}login`, {
-            username: user.username,
+        return axios.post(`${API_URL}/login`, {
+            email: user.email,
             password: user.password
         })
         .then(response => {
@@ -17,7 +17,7 @@ class AuthService {
         localStorage.removeItem('user');
     }
     register(user) {
-        return axios.post(`${API_URL}register`, {
+        return axios.post(`${API_URL}/register`, {
             username: user.username,
             email: user.email,
             password: user.password,

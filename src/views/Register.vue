@@ -55,11 +55,31 @@ export default {
            password:"",
        };
    },
-   methods: {
-       userSignUp(user) {
-           
-       }
-   }
+methods: {
+    register() {
+        fetch("https://d0g-blog.herokuapp.com/users/register", {
+            method: "POST",
+            body: JSON.stringify({
+                name: this.name,
+                email: this.email,
+                password: this.password,
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        })
+        .then((response) => response.json())
+        .then((json) => {
+            this.msg = `${this.name} registered Successfully`;
+            alert("redirecting to login...");
+            localStorage.setItem("jwt", json.jwt);
+            this.$router.push({name: "Login"});
+        })
+        .catch((err) => {
+            alert(err);
+        });
+    },
+},
 };
 </script>
 
