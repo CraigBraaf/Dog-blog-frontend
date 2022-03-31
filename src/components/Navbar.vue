@@ -16,23 +16,26 @@
    <div class="collapse navbar-collapse" id="navbarSupportedContent1">
      <ul class="nav navbar-nav ml-auto">
 	    <li class="nav-item active">
-        <router-link class="nav-link" router-link to="/">Home</router-link>
+        <router-link class="nav-link"  router-link to="/">Home</router-link>
       </li>
       <li class="nav-item active">
-        <router-link class="nav-link" router-link to="/Blogs">Blogs</router-link>
+        <router-link class="nav-link"  router-link to="/Blogs">Blogs</router-link>
       </li>
       <li class="nav-item active">
-        <router-link class="nav-link" router-link to="/Login">Login</router-link>
+        <router-link class="nav-link"   v-if="!currentUser" router-link to="/Login">Login</router-link>
+      </li>
+      <!-- <li class="nav-item active">
+        <router-link class="nav-link"  v-if="currentUser" router-link to="/Register">Register</router-link>
+      </li> -->
+      <li class="nav-item active">
+        <router-link class="nav-link"   v-if="currentUser" router-link to="/Profile">Profile</router-link>
       </li>
       <li class="nav-item active">
-        <router-link class="nav-link" router-link to="/Register">Register</router-link>
-      </li>
-      <li class="nav-item active">
-        <router-link class="nav-link" router-link to="/Profile">Profile</router-link>
-      </li>
-      <li class="nav-item active">
-        <router-link class="nav-link" router-link to="/Contact">Contact</router-link>
-      </li>
+        <router-link class="nav-link"  router-link to="/Contact">Contact</router-link>
+      </li> 
+       
+        <button class="btn" v-if="currentUser" @click="logOut">LogOut</button>
+      
     </ul>
 	</div>
 	</div>
@@ -41,7 +44,30 @@
 </template>
 
 <script>
-
+export default {
+    data(){
+        return {
+            isActive: false,
+             
+        };
+    },
+    methods:{
+        toggleNav() {
+            this.isActive = !this.isActive;
+        },
+        logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+    },
+    computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+   
+  },
+ 
+};
 </script>
 
 <style scoped>
@@ -53,5 +79,6 @@
 .img {
   margin-left: 50px;
 }
+
 
 </style>

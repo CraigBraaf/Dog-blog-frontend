@@ -1,88 +1,281 @@
 <template>
-   <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <form @submit.prevent="register" class="col-md-9">
-                     <div class="AppForm shadow-lg">
-                    <div class="row">
-                        <div class="col-md-10 d-flex justify-content-center align-items-center">
-                            <div class="AppFormLeft">
 
-                                <h1>REGISTER:</h1>
-                                <br>
-                                <div class="form-group position-relative mb-6">
-                                    <input type="username" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="username"
-                                        placeholder="username">
-                                        <i class="fa fa-user-o"></i>
-                                </div>
-                                <div class="form-group position-relative mb-4">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="email"
-                                        placeholder="Email">
-                                        </div>
-                                <div class="form-group position-relative mb-6">
-                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" v-model="password"
-                                        placeholder="Password">
-                                        <i class="fa fa-key"></i>
-                                </div>
-                                <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
-                                    Register
-                                </button>
-                                <div class="row  mt-4 mb-4">
-                                    
-                                    <div class="col-md-6">
-                                    </div>
-                                </div>
-                               
+    <div id="card">
 
-                            </div>
+    <div id="card-content">
 
-                        </div>
-                    </div>
+      <div id="card-title">
+
+        <h1 style="font-weight: bold;color:#b18044">SIGN UP</h1>
+
+        <div class="border"></div>
+
+ 
+
+      </div>
+
+      <Form @submit="handleRegister" :validation-schema="schema">
+
+        <div v-if="!successful">
+
+        
+
+                <div class="form-group">
+
+                    <label class="form-label" id="nameLabel" for="name"></label>
+
+                    <Field type="text" class="form-control" id="username" name="username" placeholder="Username" tabindex="1"  />
+
+                    <ErrorMessage name="username" class="error-feedback" />
+
                 </div>
-         
-               
 
-            </form>
+
+
+                <div class="form-group">
+
+                    <label class="form-label" id="emailLabel" for="email"></label>
+
+                    <Field type="email" class="form-control" id="email" name="email" placeholder="Your Email" tabindex="2" />
+
+                    <ErrorMessage name="email" class="error-feedback" />
+
+                </div>
+
+
+
+            
+
+
+
+                <div class="form-group">
+
+                    <label class="form-label" id="subjectLabel" for="sublect"></label>
+
+                    <Field type="text" class="form-control" id="password" name="password" placeholder="Password" tabindex="3"/>
+
+                    <ErrorMessage name="password" class="error-feedback" />
+
+                </div>
+
+
+
+                <div class=" b text-center margin-top-25">
+
+                    <button class="btn btn-mod btn-border btn-large">
+
+                       <span class="sign" >SIGN UP</span>
+
+                    
+
+                    </button>
+
+                </div>
+
+                <div class="form-group">
+
+                  <div v-if="message" class="alert alert-danger" role="alert">
+
+                      {{message}}
+
+                  </div>
+
+               </div>
+
+          
+
+        
+
         </div>
+
+      </Form>
+
     </div>
+
+  </div>
+<div class="logIn">
+        <router-link :to="{ name:'Login'}">Login</router-link>
+       </div>
 </template>
 
-<script>
-export default {
-   data() {
-       return {
-           username:"",
-           email: "",
-           password:"",
-       };
-   },
-methods: {
-    register() {
-        fetch("https://d0g-blog.herokuapp.com/users/register", {
-            method: "POST",
-            body: JSON.stringify({
-                name: this.name,
-                email: this.email,
-                password: this.password,
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-            },
-        })
-        .then((response) => response.json())
-        .then((json) => {
-            this.msg = `${this.name} registered Successfully`;
-            alert("redirecting to login...");
-            localStorage.setItem("jwt", json.jwt);
-            this.$router.push({name: "Login"});
-        })
-        .catch((err) => {
-            alert(err);
-        });
-    },
-},
-};
-</script>
 
+
+<script>
+
+
+
+import { Form, Field, ErrorMessage } from "vee-validate";
+
+import * as yup from "yup";
+
+export default {
+
+  name: "Register",
+
+  components: {
+
+    Form,
+
+    Field,
+
+    ErrorMessage,
+
+   
+
+  },
+
+  data() {
+
+    const schema = yup.object().shape({
+
+      username: yup
+
+        .string()
+
+        .required("Username is required!")
+
+        .min(3, "Must be at least 3 characters!")
+
+        .max(20, "Must be maximum 20 characters!"),
+
+      email: yup
+
+        .string()
+
+        .required("Email is required!")
+
+        .email("Email is invalid!")
+
+        .max(50, "Must be maximum 50 characters!"),
+
+      password: yup
+
+        .string()
+
+        .required("Password is required!")
+
+        .min(6, "Must be at least 6 characters!")
+
+        .max(40, "Must be maximum 40 characters!"),
+    });
+
+    return {
+
+      successful: false,
+
+      loading: false,
+
+      schema,
+
+      message: "",
+
+    };
+
+  },
+
+  computed: {
+
+    loggedIn() {
+
+      return this.$store.state.auth.status.loggedIn;
+
+    },
+
+  },
+
+  mounted() {
+
+    if (this.loggedIn) {
+
+      this.$router.push("/Login");
+
+    }
+
+  },
+
+  methods: {
+
+      handleRegister(user) {
+
+      this.message = "";
+
+      this.successful = false;
+
+      this.loading = true;
+
+      this.$store.dispatch("auth/register", user).then(
+
+        (data) => {
+
+          this.message = data.message;
+
+          this.successful = true;
+
+          this.loading = false;
+
+          this.$router.push("/Login");
+
+        },
+
+        (error) => {
+
+          this.message =
+
+            (error.response &&
+
+              error.response.data &&
+
+              error.response.data.message) ||
+
+            error.message ||
+
+            error.toString();
+
+          this.successful = false;
+
+          this.loading = false;
+
+        }
+
+      );
+
+    },
+
+    // handleRegister(user) {
+
+    //   this.errorMessage = "";
+
+    //   this.successful = false;
+
+    //   this.loading = true;
+
+    //   this.$store.dispatch("auth/register", user).then(
+
+    //     (data) => {
+
+    //       this.message = data.message;
+
+    //       this.successful = true;
+
+    //       this.loading = false;
+
+    //        this.$router.push("/");
+
+    //     }
+
+    //   ).catch((error) => {
+
+    //          error = this.errorMessage;
+
+    //   });
+
+    // },
+
+  },
+
+};
+
+</script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
 *{

@@ -392,4 +392,5 @@ export default {
     width: 95%;
   }
 }
+
 </style>

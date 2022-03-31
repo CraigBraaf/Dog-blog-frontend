@@ -1,23 +1,21 @@
 <template>
+<div id="loginpage">
 <div class="formq">
     <Form @submit="handleLogin" :validation-schema="schema">
             <div class="form-group">
                     <label class="form-label" id="nameLabel" for="name"></label>
-                    <!-- <Field type="text" class="form-control" id="name" name="customername"  tabindex="1" /> -->
                     <Field name="username" type="text" class="form-control" placeholder="username" />
                     <ErrorMessage name="username" class="error-feedback" />
                     
                 </div>
         <div class="form-group">
                     <label class="form-label" id="nameLabel" for="name"></label>
-                    <!-- <Field type="text" class="form-control" id="name" name="customername"  tabindex="1" /> -->
                     <Field name="email" type="text" class="form-control" placeholder="email" />
                     <ErrorMessage name="email" class="error-feedback" />
                     
                 </div>
                 <div class="form-group">
                     <label class="form-label" id="subjectLabel" for="sublect"></label>
-                    <!-- <Field type="text" class="form-control" id="subject" name="password"  tabindex="3"/> -->
                     <Field name="password" type="password" class="form-control" placeholder="Password" />
                     <ErrorMessage name="password" class="error-feedback"/>
                 </div>
@@ -36,13 +34,15 @@
             </div>
             
         </div>
-       
+       <div class="signUp">
+        <router-link :to="{ name:'Register'}">Register</router-link>
+       </div>
       </Form>
  
  
 </div>
            
-
+</div>
     
 
 </template>
@@ -126,7 +126,7 @@ export default {
 }
 
 .formq{
-    margin-top: 500px;
+    padding-top: 200px;
 }
 body{
     font-family: 'Roboto', sans-serif !important;
