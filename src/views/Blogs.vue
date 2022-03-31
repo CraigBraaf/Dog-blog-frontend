@@ -1,7 +1,9 @@
 <template><br><br><br><br>
+<div id="home">
+  <div class="blogg">
   <h2>Give us a bark if you have anything to add:</h2>
 <!-- Button trigger moda-->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
   CREATE BLOG
 </button>
 
@@ -73,7 +75,8 @@
   </div>
   </div>
   </div>
-
+  </div>
+</div>
 
 </template>
 
@@ -87,7 +90,7 @@ export default {
          desc: "",
          photo: "",
        },
-       url: "https://dog-apii.herokuapp.com/posts"
+       url: "https://d0g-blog.herokuapp.com/posts"
       };
 },
 mounted() {
@@ -161,7 +164,7 @@ body {
 }
 
 .card-content span {
-  background-color: #51adc4;
+  background-color: rgb(255, 51, 0);
   color: #fff;
   font-weight: 300;
   font-size: 10px;
@@ -287,5 +290,21 @@ input[readonly] {
 /* this is only due to codepen display don't use this outside of codepen */
 .contaiiner {
   padding-top: 20px;
+}
+
+#home{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_28/1587661/dogs-age-years-kb-inline-200707.jpg");
+    margin-top: -100px;
+}
+
+.blogg {
+  padding-top: 100px;
+}
+
+.btn {
+  color: rgb(255, 51, 0);
 }
 </style>

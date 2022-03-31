@@ -1,5 +1,5 @@
 <template>
-
+<div id="loginpage">
   <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <form @submit.prevent="login" class="col-md-9">
@@ -60,6 +60,7 @@
                 </div>
 
             </form>
+        </div>
         </div>
     </div>
 
@@ -173,5 +174,12 @@ body{
 
 .container {
     margin-top: 200px;
+}
+
+#loginpage{
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_28/1587661/dogs-age-years-kb-inline-200707.jpg");
 }
 </style>

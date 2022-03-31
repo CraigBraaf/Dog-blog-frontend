@@ -99,7 +99,7 @@ button::selection {
     0 0px 33.4px rgba(0, 0, 0, 0.072), 0 0px 80px rgba(0, 0, 0, 0.1);
 }
 h2 {
-  background: linear-gradient(45deg,#CF6964, #8D334C);
+  background: linear-gradient(45deg,rgb(255, 51, 0), rgb(255, 120, 86));
   letter-spacing: 0.1rem;
   padding: 1rem;
   cursor: default;
@@ -136,7 +136,7 @@ button {
   margin-top: 1rem;
   padding: 1rem 1.5rem;
   border: none;
-  background: linear-gradient(45deg,#8D334C,#CF6964);
+  background: linear-gradient(45deg,rgb(255, 51, 0),#CF6964);
   cursor: pointer;
   transition: background 0.15s;
 }
@@ -144,7 +144,7 @@ i {
   margin-right: 0.5rem;
 }
 .submit:hover {
-  background: rgba(173, 216, 230, 1);
+  background: rgb(179, 20, 20);
 }
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
