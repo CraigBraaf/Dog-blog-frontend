@@ -162,4 +162,27 @@ h1 {
 .social-menu ul li:nth-child(4) a:hover{
     background-color: #000;
 }
+
+@media only screen and (max-width: 812px) {
+  h1 {
+    font-size: 50px;
+    margin-top: -70px;
+  }
+  h2 {
+    font-size:50px;
+    margin-top: 150px;
+    
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  h1 {
+    font-size: 50px;
+    margin-top: -70px;
+  }
+  h2 {
+    font-size:50px;
+    margin-top: 150px;
+  }
+}
 </style>

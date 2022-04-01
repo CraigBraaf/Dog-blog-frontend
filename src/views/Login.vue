@@ -1,6 +1,7 @@
 <template>
 <div id="loginpage">
 <div class="formq">
+  <h1>LOGIN:</h1>
     <Form @submit="handleLogin" :validation-schema="schema">
             <div class="form-group">
                     <label class="form-label" id="nameLabel" for="name"></label>
@@ -20,7 +21,7 @@
                     <ErrorMessage name="password" class="error-feedback"/>
                 </div>
                 <div class="form-group">
-                <div class=" b text-center margin-top-25">
+                <div class="b text-center margin-top-25">
                     <button class="btn btn-mod btn-border btn-large">
                       <span class="log">LOGIN</span>
                      
@@ -202,4 +203,6 @@ body{
     background-position: center;
     background-image: url("https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_28/1587661/dogs-age-years-kb-inline-200707.jpg");
 }
+
+
 </style>
